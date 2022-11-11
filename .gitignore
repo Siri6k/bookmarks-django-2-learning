@@ -1,0 +1,7 @@
+__pycache__ 
+idea/_ 
+idea/ 
+.project 
+.pydevproject 
+.idea/ 
+db.sqlite3 

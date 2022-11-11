@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+	<h1>Se connecter</h1>
+	{% if form.errors %}
+		<p>
+			votre nom d'utilisateur et mot de passe ne correspondent pas.
+			Veuillez reessayer encore.
+		</p>
+		{% else %}
+			<p>Svp, completez ce formulaire pour vous connectez. </p>
+		{% endif %}
+		<div class="login-form">
+		<form action="{% url "login" %}" method="post">
+			{{ form.as_p }}
+			{% csrf_token %}
+			<input type="hidden" name="next" value="{{ next }}" />
+			<p><input type="submit" value="Se connecter" /></p>
+		</form>
+		<p><a href="{% url "password_reset" %}">Mot de passe oublié</a></p>
+		<p><a href="{% url "register" %}">Créez un nouveau compte</a>
+		</div>
+		<div	class="social">
+			<ul>
+				<li	class="facebook"><a	href="{% url "social:begin" "facebook" %}">Sign in with Facebook</a></li>
+			</ul>
+		</div>
+{% endblock %}
