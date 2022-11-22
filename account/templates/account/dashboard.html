@@ -4,7 +4,15 @@
 
 {% block content %}
 	<h1>Dashboard</h1>
-	<p>Bienvenue sur votre page d'accueil. Vous pouvez 
-	<a href="{% url "edit" %}">Modifier votre profil</a> ou 
-	<a href="{% url "password_change" %}">Changer votre mot de passe</a>.</p>
+{% with total_images_created=request.user.images_created.Count %}
+	<p>Bienvenue sur votre page d'accueil.
+		Vous avez posté {{ total_images_created }}
+	 image{{ total_images_created|pluralize }}.</p>
+{% endwith %}
+
+	<p>Faites glisser le bouton suivant vers votre barre d'outils pour marquer l'image d'autres sites web
+	<a href="javascript:{% include 'bookmarklet_launcher.js' %}" class="button">Marquez !</a> </p>
+	<p>Vous pouvez aussi <a href="{% url 'edit' %}">Modifier votre profile</a>
+		ou <a href="{% url 'password_change' %}">Modifiez le mot de passe</a>.</p>
+
 {% endblock %}
